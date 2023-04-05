@@ -30,7 +30,13 @@ public class MetodosLooca {
         ProcessoGrupo objtProcesso = new ProcessoGrupo();
         ServicoGrupo objtServico = new ServicoGrupo();
         DiscoGrupo objtDiscos = new DiscoGrupo();
+        
+//        JanelaGrupo objtJanela = new ;
         // cada objeto(Sistema,Memoria,Temperatura e etc) tem diversos métodos de GET sobre cada informação dos componentes
+        //Exemplos métodos do disco
+        Integer objetoDiscosQtdDiscos = objtDiscos.getQuantidadeDeDiscos();
+        Integer objetoDiscosQtdVolumes = objtDiscos.getQuantidadeDeVolumes();
+        Integer objetoDiscos = objtDiscos.getQuantidadeDeVolumes();
         
         
     }
