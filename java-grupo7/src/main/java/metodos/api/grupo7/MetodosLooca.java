@@ -20,6 +20,7 @@ import com.github.britooo.looca.api.group.temperatura.Temperatura;
 public class MetodosLooca {
     public static void main(String[] args) {
         // após configurar a dependência do Looca no arquivo pom.xml na aba "Project Files"
+        //DICA: quando escrever o código objeto Looca "Looca objtLooca = new Looca();" apert CTRL + SHIFT + I que o import vem automático
         // criamos um objeto "objtLooca" que é composto por vários objetos, sendo cada componente um objeto 
         Looca objtLooca = new Looca();
         // após criarmos esse objeto iremos criar os objetos de cada componentes
