@@ -9,9 +9,18 @@ package com.mycompany.conexao.banco;
  * @author jgmat
  */
 public class Filme {
-    private int id;
+    private Integer id;
     private String nome;
-
+    private Integer anoLancamento;
+    
+    public Filme(Integer id, String nome, Integer anoLancamento){
+        this.anoLancamento = anoLancamento;
+        this.id = id;
+        this.nome=nome;
+    }
+    public Filme(){
+        
+    }
     public int getId() {
         return id;
     }
@@ -35,7 +44,7 @@ public class Filme {
     public void setAnoLancamento(int anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
-    private int anoLancamento;
+    
 
     @Override
     public String toString() {

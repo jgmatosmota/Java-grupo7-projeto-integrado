@@ -19,8 +19,8 @@ public class Conexao {
 
   dataSource​.setDriverClassName("org.h2.Driver");
 
-  dataSource​.setUrl("jdbc:h2:file:./banco_teste");
-  //("jdbc:mysql://localhost:3306:teste123")
+  dataSource​.setUrl("jdbc:h2:file:/banco_teste");
+  //("jdbc:mysql://localhost:3306/teste123")
 
   dataSource​.setUsername("sa");
 
