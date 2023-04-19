@@ -1,1 +1,1 @@
-# Métodos de conexão com banco de dados e aplicaçào Jframe para capturar dados de componentes da máquina
+# Métodos de conexão com banco de dados e aplicação Jframe para capturar dados de componentes da máquina
