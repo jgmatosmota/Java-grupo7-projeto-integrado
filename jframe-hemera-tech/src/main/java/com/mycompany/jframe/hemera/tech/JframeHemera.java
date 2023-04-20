@@ -4,6 +4,7 @@
  */
 package com.mycompany.jframe.hemera.tech;
 
+import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -108,13 +109,28 @@ public class JframeHemera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+    // métodos de conexão com banco de dados SQLserver
     ConexaoBanco conexaoBanco = new ConexaoBanco();
     JdbcTemplate conexao = conexaoBanco.getConnection();
         
         
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
-        // TODO add your handling code here:
+        String u_email = String.valueOf(inputLogin.getText());
+        String u_senha = String.valueOf(inputSenha.getText());
+        
+                
+        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select 1 from gestao_acesso where email = ? and senha = ?", 
+                new ObjetoUsuarioRowMapper(), u_email, u_senha);
+        
+//        if(!acessos.isEmpty()){
+//            Finish telaFinal = new Finish();
+//            telaFinal.setVisible(true);
+//            this.setVisible(false);
+//        }else{
+//            incorreto.setVisible(true);
+//        }
+        
+        
         
     }//GEN-LAST:event_botaoLoginActionPerformed
 

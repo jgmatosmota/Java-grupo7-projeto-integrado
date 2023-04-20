@@ -19,8 +19,8 @@ public class ConexaoBanco {
 
         dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        dataSource​.setUrl("jdbc:h2:file:/banco_teste");
-//    dataSource​.setUrl("jdbc:sqlserver://");
+//     dataSource​.setUrl("jdbc:h2:file:/banco_teste");
+        dataSource​.setUrl("jdbc:sqlserver://");
     //("jdbc:mysql://localhost:3306/teste123")
 
         dataSource​.setUsername("x");
