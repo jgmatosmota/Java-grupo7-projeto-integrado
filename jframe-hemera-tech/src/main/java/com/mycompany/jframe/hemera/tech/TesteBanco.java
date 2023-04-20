@@ -14,6 +14,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class TesteBanco {
     public static void main(String[] args) {
+        
+        // EXEMPLO POC(PROOF OF CONCEPT) DA CONEXÃO COM BANCO DE DADOS
+        
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = new JdbcTemplate();
         Scanner leitor = new Scanner(System.in);
@@ -22,6 +25,7 @@ public class TesteBanco {
             System.out.println("-".repeat(30));
             System.out.println("1 - testar conexão");
             System.out.println("0 - sair");
+            System.out.println("-".repeat(30));
             opcao = leitor.nextInt();
             switch(opcao){
                
@@ -31,7 +35,8 @@ public class TesteBanco {
                     System.out.println("senha");
                     String senha = leitor.nextLine();
                     
-                    // O simbolo ? na query vão ser substituidas por 
+                    // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
+                    // O select 1 me retorna um booleano 
                     List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select 1 from gestao_acesso where email = ? and senha = ?", 
                     new ObjetoUsuarioRowMapper(), login, senha);
                     
@@ -41,6 +46,11 @@ public class TesteBanco {
                     }else{
                         System.out.println("Deu errado");
                     }
+                    
+                    break;
+                    
+                default: 
+                    System.out.println("digite uma opção válida!");
                 
                 
             }

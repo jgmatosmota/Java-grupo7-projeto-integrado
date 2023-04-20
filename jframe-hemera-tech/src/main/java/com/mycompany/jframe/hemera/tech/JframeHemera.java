@@ -115,20 +115,23 @@ public class JframeHemera extends javax.swing.JFrame {
         
         
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
-        String u_email = String.valueOf(inputLogin.getText());
-        String u_senha = String.valueOf(inputSenha.getText());
+        String email = String.valueOf(inputLogin.getText());
+        String senha = String.valueOf(inputSenha.getText());
         
-                
+        // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
+        // O select 1 me retorna um booleano         
         List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select 1 from gestao_acesso where email = ? and senha = ?", 
-                new ObjetoUsuarioRowMapper(), u_email, u_senha);
-        
-//        if(!acessos.isEmpty()){
-//            Finish telaFinal = new Finish();
-//            telaFinal.setVisible(true);
-//            this.setVisible(false);
-//        }else{
-//            incorreto.setVisible(true);
-//        }
+        new ObjetoUsuarioRowMapper(), email, senha);
+        //Validação de login com método.isEmpty() só que negado, ou seja, se ele retornar 1 usuário ele conseguiu logar;
+        if(!listaObjetoUsuario.isEmpty()){
+            //Chamando próxima tela
+            JframeComponentes telaComponentes = new JframeComponentes();
+            telaComponentes.setVisible(true);
+            //Faz a tela de login sumir e passar para próxima tela
+            this.setVisible(false);
+        }else{
+            //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
+        }
         
         
         

@@ -9,14 +9,18 @@ package com.mycompany.jframe.hemera.tech;
  * @author jgmat
  */
 public class ObjetoUsuario {
-    
-//    private Integer idUsuario;
+    //    tem que ter atributos com as informações que quero puxar do banco
+    //    private Integer idUsuario;
     private String emailUsuario;
     private String senhaUsuario;
     
     public ObjetoUsuario(String emailUsuario, String senhaUsuario){
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
+    }
+    // Para o sql funcionar precisamos desse construtor vazio(não sei porquê)
+    public ObjetoUsuario(){
+        
     }
 
     

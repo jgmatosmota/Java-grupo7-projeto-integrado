@@ -23,7 +23,7 @@ public class ConexaoBanco {
         dataSource​.setUrl("jdbc:sqlserver://");
     //("jdbc:mysql://localhost:3306/teste123")
 
-        dataSource​.setUsername("x");
+        dataSource​.setUsername("hemeratech");
 
         dataSource​.setPassword("x");  
 
