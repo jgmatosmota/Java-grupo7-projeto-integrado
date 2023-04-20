@@ -10,19 +10,16 @@ package com.mycompany.jframe.hemera.tech;
  */
 public class ObjetoUsuario {
     
-    private Integer idUsuario;
+//    private Integer idUsuario;
     private String emailUsuario;
     private String senhaUsuario;
     
-    public ObjetoUsuario(Integer idUsuario, String emailUsuario, String senhaUsuario){
-        this.idUsuario = idUsuario;
+    public ObjetoUsuario(String emailUsuario, String senhaUsuario){
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
+    
 
     public String getEmailUsuario() {
         return emailUsuario;
@@ -32,9 +29,7 @@ public class ObjetoUsuario {
         return senhaUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+   
 
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;

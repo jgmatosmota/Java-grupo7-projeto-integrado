@@ -4,6 +4,8 @@
  */
 package com.mycompany.jframe.hemera.tech;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 /**
  *
  * @author jgmat
@@ -106,9 +108,14 @@ public class JframeHemera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        
+    ConexaoBanco conexaoBanco = new ConexaoBanco();
+    JdbcTemplate conexao = conexaoBanco.getConnection();
+        
+        
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoLoginActionPerformed
 
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed

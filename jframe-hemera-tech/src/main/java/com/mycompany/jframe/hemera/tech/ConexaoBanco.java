@@ -15,25 +15,33 @@ public class ConexaoBanco {
    private JdbcTemplate connection;
    public  ConexaoBanco() {
 
-    BasicDataSource dataSource = new BasicDataSource();
+        BasicDataSource dataSource = new BasicDataSource();
 
-    dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-    dataSource​.setUrl("jdbc:h2:file:/banco_teste");
+        dataSource​.setUrl("jdbc:h2:file:/banco_teste");
 //    dataSource​.setUrl("jdbc:sqlserver://");
     //("jdbc:mysql://localhost:3306/teste123")
 
-    dataSource​.setUsername("x");
+        dataSource​.setUsername("x");
 
-    dataSource​.setPassword("x");  
+        dataSource​.setPassword("x");  
 
     this.connection = new JdbcTemplate(dataSource);
 
 }
 
-public JdbcTemplate getConnection() {
+    public JdbcTemplate getConnection() {
 
-  return connection;
+        return connection;
 
+    }
+    
+    
+        
+        
+        
+        
+    
 }
-}
+    
