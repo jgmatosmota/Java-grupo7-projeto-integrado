@@ -131,6 +131,7 @@ public class JframeHemera extends javax.swing.JFrame {
             this.setVisible(false);
         }else{
             //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
+            
         }
         
         

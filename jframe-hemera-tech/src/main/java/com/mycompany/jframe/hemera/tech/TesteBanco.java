@@ -17,6 +17,7 @@ public class TesteBanco {
     public static void main(String[] args) {
         // EXEMPLO POC(PROOF OF CONCEPT) DA CONEXÃO COM BANCO DE DADOS
         Scanner leitorB = new Scanner(System.in);
+        
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = conexaoBanco.getConnection();
         Scanner leitor = new Scanner(System.in);

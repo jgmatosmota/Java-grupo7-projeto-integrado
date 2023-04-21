@@ -6,9 +6,7 @@ package com.mycompany.jframe.hemera.tech;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.Volume;
 import oshi.SystemInfo;
-import oshi.software.os.OSFileStore;
 import oshi.hardware.NetworkIF;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
@@ -17,6 +15,7 @@ import com.github.britooo.looca.api.group.rede.RedeParametros;
 import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
+import java.util.List;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.HardwareAbstractionLayer;
 
@@ -26,41 +25,44 @@ import oshi.hardware.HardwareAbstractionLayer;
  */
 
 public class MetodosLooca {
-    HardwareAbstractionLayer hardware = new SystemInfo().getHardware();
     
-    final Looca looca = new Looca();
-    HWDiskStore disco;
+    HardwareAbstractionLayer hardware = new SystemInfo().getHardware();
+    List<HWDiskStore> diskStores = hardware.getDiskStores();
+    HWDiskStore disco = diskStores != null && !diskStores.isEmpty() ? diskStores.get(0) : null;
+    
     NetworkIF redeInterface;
     SystemInfo sistema = new SystemInfo();
     Sistema objtSistema = new Sistema();
     Memoria objtMemoria = new Memoria();
-    Disco objtDisco = new Disco(disco);
+    Disco objtDisco = disco != null ? new Disco(disco) : null;
     Processador objtProcessador = new Processador();
     Temperatura objtTemperatura = new Temperatura();
     ProcessoGrupo objtProcesso = new ProcessoGrupo();
     ServicoGrupo objtServico = new ServicoGrupo();
     RedeParametros objtRedeParametros = new RedeParametros(sistema);
-   
-//    private DiscoGrupo objtDiscos = new DiscoGrupo();
-    //    Rede objtRede = new Rede(sistema);
     
+    public NetworkIF getRedeInterface() {
+        List<NetworkIF> networkIFs = hardware.getNetworkIFs();
+        NetworkIF redeInterface = null;
+        if (!networkIFs.isEmpty()) {
+            // Seleciona a primeira interface de rede disponível
+            redeInterface = networkIFs.get(0);
+        }
+        return redeInterface;
+    }
+
     //Sistema Operacional
-    String sistemaOperaciona = objtSistema.getSistemaOperacional();
+    String sistemaOperacional = objtSistema.getSistemaOperacional();
     //ProcessadorModelo
     String modeloProcessador = objtProcessador.getNome();
     //MemoriaModelo
-    //Não tem modelo!(trouxe total de memória)
     Long modeloMemoria = objtMemoria.getTotal();
-    //PlacaDeRedeModelo
-    //Não tem na API(Buscar fora)
-    String hostMac = redeInterface.getMacaddr();
+    //Host Name
     String hostName = objtRedeParametros.getHostName();
     //DiscoModelo
-    String modeloDisco = objtDisco.getNome();
+    String modeloDisco = objtDisco != null ? objtDisco.getNome() : "Unknown";
     //Espaço Total Disco
-    Long espacoDisco = objtDisco.getTamanho();
-    
-    
+    Long espacoDisco = objtDisco != null ? objtDisco.getTamanho() : 0L;
     
     //MemoriaUtilizada(RAM)
     long memoriaUtilizada = objtMemoria.getEmUso();
@@ -68,20 +70,17 @@ public class MetodosLooca {
     long memoriaTotal = objtMemoria.getTotal();
     //MemoriaLivre(RAM)
     long memoriaDisponivel = objtMemoria.getDisponivel();
+
     //DownloadRede
-    long bytesRecebidos = redeInterface.getBytesRecv();
+    long bytesRecebidos = redeInterface != null ? redeInterface.getBytesRecv() : 0L;
     //UploadRede
-    long bytesEnviados = redeInterface.getBytesRecv();
-    //MsRede
+    long bytesEnviados = redeInterface != null ? redeInterface.getBytesRecv() : 0L;
+
     //TemperaturaCPU(talvez)
     Double temperaturaAtual = hardware.getSensors().getCpuTemperature();
     //UsoCPU
     Double usoCpu = objtProcessador.getUso();
-    //MemoriaUtilizada(HD)
     //MemoriaTotal(HD)
-    long discoTotal = objtDisco.getTamanho();
-    //MemoriaLivre(HD)
-
-   
-    
+    long discoTotal = objtDisco != null ? objtDisco.getTamanho() : 0L;
 }
+
