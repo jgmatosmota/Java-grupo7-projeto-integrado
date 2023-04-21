@@ -21,8 +21,8 @@ public class ObjetoUsuarioRowMapper implements RowMapper<ObjetoUsuario> {
         
         // email em string é o nome da coluna do banco de dados
         
-        objetoUsuario.setEmailUsuario(rs.getString("email"));
-        objetoUsuario.setSenhaUsuario(rs.getString("senha"));
+        objetoUsuario.setEmail(rs.getString("email"));
+        objetoUsuario.setSenha(rs.getString("senha"));
         return objetoUsuario;
     }
 }

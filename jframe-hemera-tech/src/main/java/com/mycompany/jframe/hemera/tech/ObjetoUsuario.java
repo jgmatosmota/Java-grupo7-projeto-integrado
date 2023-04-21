@@ -11,12 +11,12 @@ package com.mycompany.jframe.hemera.tech;
 public class ObjetoUsuario {
     //    tem que ter atributos com as informações que quero puxar do banco
     //    private Integer idUsuario;
-    private String emailUsuario;
-    private String senhaUsuario;
+    private String email;
+    private String senha;
     
-    public ObjetoUsuario(String emailUsuario, String senhaUsuario){
-        this.emailUsuario = emailUsuario;
-        this.senhaUsuario = senhaUsuario;
+    public ObjetoUsuario(String email, String senha){
+        this.email = email;
+        this.senha = senha;
     }
     // Para o sql funcionar precisamos desse construtor vazio(não sei porquê)
     public ObjetoUsuario(){
@@ -26,21 +26,21 @@ public class ObjetoUsuario {
     
 
     public String getEmailUsuario() {
-        return emailUsuario;
+        return email;
     }
 
     public String getSenhaUsuario() {
-        return senhaUsuario;
+        return senha;
     }
 
    
 
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setSenhaUsuario(String senhaUsuario) {
-        this.senhaUsuario = senhaUsuario;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     
    

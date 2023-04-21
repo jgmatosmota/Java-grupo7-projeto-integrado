@@ -6,7 +6,10 @@ package com.mycompany.jframe.hemera.tech;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
+import com.github.britooo.looca.api.group.discos.Volume;
 import oshi.SystemInfo;
+import oshi.software.os.OSFileStore;
+import oshi.hardware.NetworkIF;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
@@ -15,6 +18,7 @@ import com.github.britooo.looca.api.group.servicos.ServicoGrupo;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import oshi.hardware.HWDiskStore;
+import oshi.hardware.HardwareAbstractionLayer;
 
 /**
  *
@@ -22,18 +26,21 @@ import oshi.hardware.HWDiskStore;
  */
 
 public class MetodosLooca {
+    HardwareAbstractionLayer hardware = new SystemInfo().getHardware();
     
-    private final Looca looca = new Looca();
-    private HWDiskStore disco;
-    private SystemInfo sistema = new SystemInfo();
-    private Sistema objtSistema = new Sistema();
-    private Memoria objtMemoria = new Memoria();
-    private Disco objtDisco = new Disco(disco);
-    private Processador objtProcessador = new Processador();
-    private Temperatura objtTemperatura = new Temperatura();
-    private ProcessoGrupo objtProcesso = new ProcessoGrupo();
-    private ServicoGrupo objtServico = new ServicoGrupo();
-    private RedeParametros objtRedeParametros = new RedeParametros(sistema);
+    final Looca looca = new Looca();
+    HWDiskStore disco;
+    NetworkIF redeInterface;
+    SystemInfo sistema = new SystemInfo();
+    Sistema objtSistema = new Sistema();
+    Memoria objtMemoria = new Memoria();
+    Disco objtDisco = new Disco(disco);
+    Processador objtProcessador = new Processador();
+    Temperatura objtTemperatura = new Temperatura();
+    ProcessoGrupo objtProcesso = new ProcessoGrupo();
+    ServicoGrupo objtServico = new ServicoGrupo();
+    RedeParametros objtRedeParametros = new RedeParametros(sistema);
+   
 //    private DiscoGrupo objtDiscos = new DiscoGrupo();
     //    Rede objtRede = new Rede(sistema);
     
@@ -46,6 +53,7 @@ public class MetodosLooca {
     Long modeloMemoria = objtMemoria.getTotal();
     //PlacaDeRedeModelo
     //Não tem na API(Buscar fora)
+    String hostMac = redeInterface.getMacaddr();
     String hostName = objtRedeParametros.getHostName();
     //DiscoModelo
     String modeloDisco = objtDisco.getNome();
@@ -55,15 +63,23 @@ public class MetodosLooca {
     
     
     //MemoriaUtilizada(RAM)
+    long memoriaUtilizada = objtMemoria.getEmUso();
     //MemoriaTotal(RAM)
+    long memoriaTotal = objtMemoria.getTotal();
     //MemoriaLivre(RAM)
+    long memoriaDisponivel = objtMemoria.getDisponivel();
     //DownloadRede
+    long bytesRecebidos = redeInterface.getBytesRecv();
     //UploadRede
+    long bytesEnviados = redeInterface.getBytesRecv();
     //MsRede
     //TemperaturaCPU(talvez)
+    Double temperaturaAtual = hardware.getSensors().getCpuTemperature();
     //UsoCPU
+    Double usoCpu = objtProcessador.getUso();
     //MemoriaUtilizada(HD)
     //MemoriaTotal(HD)
+    long discoTotal = objtDisco.getTamanho();
     //MemoriaLivre(HD)
 
    
