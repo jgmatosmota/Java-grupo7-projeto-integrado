@@ -11,6 +11,7 @@ import oshi.hardware.NetworkIF;
  * @author jgmat
  */
 public class ListaHardware {
+
     public static void main(String[] args) {
         MetodosLooca looca = new MetodosLooca();
         NetworkIF redeInterface = looca.getRedeInterface();
@@ -22,7 +23,15 @@ public class ListaHardware {
 //            bytesEnviados = redeInterface.getBytesSent();
 //           
 //        }
-        
+        System.out.println("  _    _                            _______        _     \n" +
+" | |  | |                          |__   __|      | |    \n" +
+" | |__| | ___ _ __ ___   ___ _ __ __ _| | ___  ___| |__  \n" +
+" |  __  |/ _ \\ '_ ` _ \\ / _ \\ '__/ _` | |/ _ \\/ __| '_ \\ \n" +
+" | |  | |  __/ | | | | |  __/ | | (_| | |  __/ (__| | | |\n" +
+" |_|  |_|\\___|_| |_| |_|\\___|_|  \\__,_|_|\\___|\\___|_| |_|\n" +
+"                                                         \n" +
+"                                                         ");
+        System.out.println("-".repeat(30));
         //Sistema Operacional
         System.out.println("Sistema Operacional");
         System.out.println(looca.sistemaOperacional);
@@ -41,8 +50,6 @@ public class ListaHardware {
         //Espaço Total Disco
 //        System.out.println(looca.discoTotal);
         System.out.println("-".repeat(30));
-        
-        
         //MemoriaUtilizada(RAM)
         System.out.println("//MemoriaUtilizada(RAM)");
         System.out.println(looca.memoriaUtilizada);
@@ -57,7 +64,7 @@ public class ListaHardware {
         System.out.println(redeInterface.getBytesRecv() / (1024.0 * 1024.0) + " MB/s");
         //UploadRede
         System.out.println("UploadRede");
-        System.out.println(redeInterface.getBytesSent() / (1024.0 * 1024.0)+ " MB/s");
+        System.out.println(redeInterface.getBytesSent() / (1024.0 * 1024.0) + " MB/s");
         //TemperaturaCPU(talvez)
         System.out.println("TemperaturaCPU");
         System.out.println(looca.temperaturaAtual);
@@ -67,6 +74,5 @@ public class ListaHardware {
         //MemoriaTotal(HD)
         System.out.println("MemoriaTotal(HD)");
         System.out.println(looca.espacoDisco);
-         
     }
 }
