@@ -4,6 +4,7 @@
  */
 package com.mycompany.jframe.hemera.tech;
 
+import java.awt.GraphicsEnvironment;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -13,11 +14,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class JframeHemera extends javax.swing.JFrame {
 
+   
+
     /**
      * Creates new form JframeHemera
      */
+     
+   
     public JframeHemera() {
         initComponents();
+        
+        this.setExtendedState(JframeHemera.MAXIMIZED_BOTH);
+        this.dispose();
+        this.setResizable(false);
+        this.setUndecorated(true);
+        this.setVisible(true);
     }
 
     /**
@@ -108,34 +119,31 @@ public class JframeHemera extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     // métodos de conexão com banco de dados SQLserver
     ConexaoBanco conexaoBanco = new ConexaoBanco();
     JdbcTemplate conexao = conexaoBanco.getConnection();
-        
-        
+
+
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String email = String.valueOf(inputLogin.getText());
         String senha = String.valueOf(inputSenha.getText());
-        
         // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
         // O select 1 me retorna um booleano         
-        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select * from teste where email = ? and senha = ?", 
-                    new ObjetoUsuarioRowMapper(), email, senha);
+        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select * from teste where email = ? and senha = ?",
+                new ObjetoUsuarioRowMapper(), email, senha);
         //Validação de login com método.isEmpty() só que negado, ou seja, se ele retornar 1 usuário ele conseguiu logar;
-        if(listaObjetoUsuario.size() > 0){
+        if (listaObjetoUsuario.size() > 0) {
             //Chamando próxima tela
             JframeComponentes telaComponentes = new JframeComponentes();
             telaComponentes.setVisible(true);
             //Faz a tela de login sumir e passar para próxima tela
             this.setVisible(false);
-        }else{
+        } else {
             //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
-            
         }
-        
-        
-        
+
     }//GEN-LAST:event_botaoLoginActionPerformed
 
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed

@@ -14,16 +14,14 @@ public class ListaHardware {
     public static void main(String[] args) {
         MetodosLooca looca = new MetodosLooca();
         NetworkIF redeInterface = looca.getRedeInterface();
-        long bytesRecebidos;
-        long bytesEnviados;
-        if (redeInterface != null) {
-            redeInterface.updateAttributes();
-            bytesRecebidos = redeInterface.getBytesRecv();
-            bytesEnviados = redeInterface.getBytesSent();
-            // ...
-            // Use os valores de bytesRecebidos e bytesEnviados conforme necessário
-            // ...
-        }
+//        long bytesRecebidos;
+//        long bytesEnviados;
+//        if (redeInterface != null) {
+//            redeInterface.updateAttributes();
+//            bytesRecebidos = redeInterface.getBytesRecv();
+//            bytesEnviados = redeInterface.getBytesSent();
+//           
+//        }
         
         //Sistema Operacional
         System.out.println("Sistema Operacional");
@@ -32,7 +30,7 @@ public class ListaHardware {
         System.out.println("ProcessadorModelo");
         System.out.println(looca.modeloProcessador);
         //MemoriaModelo
-        System.out.println("MemoriaModelo");
+        System.out.println("Memoria Ram Total");
         System.out.println(looca.memoriaTotal);
         //Não tem modelo!(trouxe total de memória)
         //info rede
@@ -56,10 +54,10 @@ public class ListaHardware {
         System.out.println(looca.memoriaDisponivel);
         //DownloadRede
         System.out.println("DownloadRede");
-        System.out.println(redeInterface.getBytesRecv());
+        System.out.println(redeInterface.getBytesRecv() / (1024.0 * 1024.0) + " MB/s");
         //UploadRede
         System.out.println("UploadRede");
-        System.out.println(redeInterface.getBytesSent());
+        System.out.println(redeInterface.getBytesSent() / (1024.0 * 1024.0)+ " MB/s");
         //TemperaturaCPU(talvez)
         System.out.println("TemperaturaCPU");
         System.out.println(looca.temperaturaAtual);
