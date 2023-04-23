@@ -39,11 +39,15 @@ public class JframeHemera extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        botaoLogin = new javax.swing.JButton();
-        inputSenha = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         inputLogin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        inputSenha = new javax.swing.JPasswordField();
+        botaoLogin = new javax.swing.JButton();
+        login = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        comece = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
@@ -60,6 +64,29 @@ public class JframeHemera extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(228, 203, 253));
+
+        inputLogin.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        inputLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputLoginActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(107, 12, 197));
+        jLabel2.setText("Usuário");
+
+        jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(107, 12, 197));
+        jLabel1.setText("Senha");
+
+        inputSenha.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        inputSenha.setText("jPasswordField1");
+
+        botaoLogin.setBackground(new java.awt.Color(107, 12, 197));
+        botaoLogin.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        botaoLogin.setForeground(new java.awt.Color(255, 255, 255));
         botaoLogin.setText("Logar!");
         botaoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,72 +94,92 @@ public class JframeHemera extends javax.swing.JFrame {
             }
         });
 
-        inputSenha.setText("jPasswordField1");
+        login.setFont(new java.awt.Font("Poppins Medium", 0, 24)); // NOI18N
+        login.setForeground(new java.awt.Color(107, 12, 197));
+        login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        login.setText("Login");
 
-        jLabel1.setText("Senha");
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HEMERA 2 (1).png"))); // NOI18N
+        logo.setText("jLabel6");
 
-        inputLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputLoginActionPerformed(evt);
-            }
-        });
+        comece.setFont(new java.awt.Font("Poppins Medium", 0, 24)); // NOI18N
+        comece.setForeground(new java.awt.Color(107, 12, 197));
+        comece.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        comece.setText("Comece a monitorar seu computador");
 
-        jLabel2.setText("Usuário");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(190, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(inputLogin)
+                                .addComponent(inputSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(comece, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(login)))
+                .addContainerGap(177, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(353, 353, 353))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(comece)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(login)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(botaoLogin)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(155, 155, 155)
-                                .addComponent(botaoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(146, 146, 146)
-                                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(botaoLogin)
-                .addGap(62, 62, 62))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    // métodos de conexão com banco de dados SQLserver
-    ConexaoBanco conexaoBanco = new ConexaoBanco();
-    JdbcTemplate conexao = conexaoBanco.getConnection();
-
 
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String email = String.valueOf(inputLogin.getText());
         String senha = String.valueOf(inputSenha.getText());
         // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
-        // O select 1 me retorna um booleano         
+        // O select 1 me retorna um booleano
         List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select * from teste where email = ? and senha = ?",
-                new ObjetoUsuarioRowMapper(), email, senha);
+            new ObjetoUsuarioRowMapper(), email, senha);
         //Validação de login com método.isEmpty() só que negado, ou seja, se ele retornar 1 usuário ele conseguiu logar;
         if (listaObjetoUsuario.size() > 0) {
             //Chamando próxima tela
@@ -143,12 +190,15 @@ public class JframeHemera extends javax.swing.JFrame {
         } else {
             //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
         }
-
     }//GEN-LAST:event_botaoLoginActionPerformed
 
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLoginActionPerformed
+    // métodos de conexão com banco de dados SQLserver
+    ConexaoBanco conexaoBanco = new ConexaoBanco();
+    JdbcTemplate conexao = conexaoBanco.getConnection();
+
 
     /**
      * @param args the command line arguments
@@ -187,10 +237,14 @@ public class JframeHemera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoLogin;
+    private javax.swing.JLabel comece;
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputSenha;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel login;
+    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }
