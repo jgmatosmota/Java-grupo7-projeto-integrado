@@ -60,6 +60,7 @@ public class ListaHardware {
         System.out.println("MemoriaLivre(RAM)");
         System.out.println(looca.memoriaDisponivel);
         //DownloadRede
+        System.out.println(redeInterface.getSpeed());
         System.out.println("DownloadRede");
         System.out.println(redeInterface.getBytesRecv() / (1024.0 * 1024.0) + " MB/s");
         //UploadRede
