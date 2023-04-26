@@ -178,7 +178,8 @@ public class JframeHemera extends javax.swing.JFrame {
         String senha = String.valueOf(inputSenha.getText());
         // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
         // O select 1 me retorna um booleano
-        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select * from teste where email = ? and senha = ?",
+        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select *"
+                + " from Funcionario where email = ? and senha = ?",
             new ObjetoUsuarioRowMapper(), email, senha);
         //Validação de login com método.isEmpty() só que negado, ou seja, se ele retornar 1 usuário ele conseguiu logar;
         if (listaObjetoUsuario.size() > 0) {

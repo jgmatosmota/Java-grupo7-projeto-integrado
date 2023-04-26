@@ -32,7 +32,7 @@ public class ListaHardware {
                 + " |_|  |_|\\___|_| |_| |_|\\___|_|  \\__,_|_|\\___|\\___|_| |_|\n"
                 + "                                                         \n"
                 + "                                                         ");
-        DecimalFormat df = new DecimalFormat("#,###.00");
+        DecimalFormat df = new DecimalFormat("#,###.0");
 //Sistema Operacional
         System.out.println("Sistema Operacional");
         System.out.println(looca.sistemaOperacional);
