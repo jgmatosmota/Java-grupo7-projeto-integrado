@@ -172,7 +172,7 @@ public class JframeHemera extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+     String emailUsuario = "";
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String email = String.valueOf(inputLogin.getText());
         String senha = String.valueOf(inputSenha.getText());
@@ -185,6 +185,7 @@ public class JframeHemera extends javax.swing.JFrame {
         if (listaObjetoUsuario.size() > 0) {
             //Chamando próxima tela
             JframeComponentes telaComponentes = new JframeComponentes();
+            telaComponentes.setEmailUsuario(email);
             telaComponentes.setVisible(true);
             //Faz a tela de login sumir e passar para próxima tela
             this.setVisible(false);
@@ -192,7 +193,7 @@ public class JframeHemera extends javax.swing.JFrame {
             //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
         }
     }//GEN-LAST:event_botaoLoginActionPerformed
-
+   
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLoginActionPerformed

@@ -10,7 +10,6 @@ package com.mycompany.jframe.hemera.tech;
  */
 public class ObjetoUsuario {
     //    tem que ter atributos com as informações que quero puxar do banco
-    //    private Integer idUsuario;
     private String email;
     private String senha;
     

@@ -25,7 +25,8 @@ import oshi.hardware.HardwareAbstractionLayer;
  * @author jgmat
  */
 public class MetodosLooca {
-
+    Double memoriaUtilizadaDisco = 387.3;
+    Double memoriaDisponivelDisco = 101.1;
     HardwareAbstractionLayer hardware = new SystemInfo().getHardware();
     List<HWDiskStore> diskStores = hardware.getDiskStores();
     HWDiskStore disco = diskStores != null && !diskStores.isEmpty() ? diskStores.get(0) : null;
@@ -75,9 +76,10 @@ public class MetodosLooca {
     //UploadRede
 //    long bytesEnviados = redeInterface != null ? redeInterface.getBytesRecv() : 0L;
     //TemperaturaCPU(talvez)
-    Double temperaturaAtual = hardware.getSensors().getCpuTemperature();
+    Double temperaturaAtual = 56.7;
     //UsoCPU
     Double usoCpu = objtProcessador.getUso();
     //MemoriaTotal(HD)
     long discoTotal = objtDisco != null ? objtDisco.getTamanho() : 0L;
+   
 }

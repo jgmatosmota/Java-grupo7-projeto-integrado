@@ -16,6 +16,7 @@ public class ListaHardware {
     public static void main(String[] args) {
         MetodosLooca looca = new MetodosLooca();
         NetworkIF redeInterface = looca.getRedeInterface();
+       
 //        long bytesRecebidos;
 //        long bytesEnviados;
 //        if (redeInterface != null) {
@@ -48,7 +49,8 @@ public class ListaHardware {
         System.out.println(looca.hostName);
 //DiscoModelo
 //System.out.println(looca.modeloDisco);
-//Espaço Total Disco
+        System.out.println("Espaço Total Disco");
+        System.out.println(df.format((looca.espacoDisco / (1024.0 * 1024.0) /1000)) + "GB");
 //System.out.println(looca.discoTotal);
         System.out.println("-".repeat(30));
 //MemoriaUtilizada(RAM)
@@ -63,18 +65,27 @@ public class ListaHardware {
 //DownloadRede
 //System.out.println(redeInterface.getSpeed());
         System.out.println("DownloadRedeTotal");
-        System.out.println(df.format((redeInterface.getBytesRecv() / (1024.0 * 1024.0) /1000)) + "GB");
+        System.out.println(df.format((redeInterface.getBytesRecv() / (1024.0 * 1024.0))) + "MB");
 //UploadRede
         System.out.println("UploadRedeTotal");
-        System.out.println(df.format((redeInterface.getBytesSent() / (1024.0 * 1024.0) /1000)) + "GB");
+        System.out.println(df.format((redeInterface.getBytesSent() / (1024.0 * 1024.0))) + "MB");
 //TemperaturaCPU(talvez)
         System.out.println("TemperaturaCPU");
-        System.out.println(looca.temperaturaAtual);
+        System.out.println(looca.temperaturaAtual+" C");
 //UsoCPU
         System.out.println("UsoCPU");
-        System.out.println(looca.usoCpu);
+        System.out.println(String.format("%1.1f GHZ/S", looca.usoCpu));
 //MemoriaTotal(HD)
         System.out.println("MemoriaTotal(HD)");
         System.out.println(df.format((looca.espacoDisco / (1024.0 * 1024.0) /1000)) + "GB");
+        System.out.println("Em uso");
+        System.out.println(looca.memoriaUtilizadaDisco+ "GB");
+        System.out.println("Disponível");
+        System.out.println(looca.memoriaDisponivelDisco+"GB");
+//        for (int i = 0; i < looca.diskStores.size(); i++) {
+//            System.out.println(looca.disco);
+//        }
+        
     }
+        
 }
