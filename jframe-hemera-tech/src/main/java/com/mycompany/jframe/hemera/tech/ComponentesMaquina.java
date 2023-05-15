@@ -22,35 +22,28 @@ import java.util.*;
  */
 public class ComponentesMaquina {
 
-    Looca looca = new Looca();
-    Sistema objtSistema = new Sistema();
-    Processador objtProcessador = new Processador();
-    Memoria objtMemoria = new Memoria();
-    DiscoGrupo objtDiscoGrupo = looca.getGrupoDeDiscos();
-    List<Disco> discos = objtDiscoGrupo.getDiscos();
-    Disco discoA = discos.get(0);
-    Long memoriaArmazenamento = discoA.getTamanho();
-    Rede rede = looca.getRede();
-    RedeInterfaceGroup gruposDeInterface = rede.getGrupoDeInterfaces();
-    List<RedeInterface> interfaces = gruposDeInterface.getInterfaces();
-    List<RedeInterface> ListRedesComDados = interfaces.stream().filter(
+    private Looca looca = new Looca();
+    private Sistema objtSistema = new Sistema();
+    private Processador objtProcessador = new Processador();
+    private Memoria objtMemoria = new Memoria();
+    private DiscoGrupo objtDiscoGrupo = looca.getGrupoDeDiscos();
+    private List<Disco> discos = objtDiscoGrupo.getDiscos();
+    private Disco discoA = discos.get(0);
+    private Long memoriaArmazenamento = discoA.getTamanho();
+    private Rede rede = looca.getRede();
+    private RedeInterfaceGroup gruposDeInterface = rede.getGrupoDeInterfaces();
+    private List<RedeInterface> interfaces = gruposDeInterface.getInterfaces();
+    private List<RedeInterface> ListRedesComDados = interfaces.stream().filter(
             rede -> rede.getBytesEnviados() > 0 && rede.getBytesRecebidos() > 0).toList();
-    RedeInterface redeDaVez = ListRedesComDados.get(0);
-    String macAddress = redeDaVez.getEnderecoMac();
+    private RedeInterface redeDaVez = ListRedesComDados.get(0);
+    private String macAddress = redeDaVez.getEnderecoMac();
     
-    public String sistemaOperacional = objtSistema.getSistemaOperacional();
-    public String modeloProcessador = objtProcessador.getNome();
-    public Long totalMemoriaRam = objtMemoria.getTotal();
-    public String hostName;
-    private String emailUsuario;
+    private String sistemaOperacional = objtSistema.getSistemaOperacional();
+    private String modeloProcessador = objtProcessador.getNome();
+    private Long totalMemoriaRam = objtMemoria.getTotal();
+   
     
-    public void setEmailUsuario(String email){
-        this.emailUsuario = email;
-    }
-    
-    public String getEmailUsuario(){
-        return emailUsuario;
-    }
+   
     public String getSistemaOperacional() {
         return sistemaOperacional;
     }
@@ -64,7 +57,7 @@ public class ComponentesMaquina {
     }
 
     public Long getMemoriaTotal() {
-        return objtMemoria.getTotal();
+        return totalMemoriaRam;
     }
 
     public Long getMemoriaArmazenamento() {
