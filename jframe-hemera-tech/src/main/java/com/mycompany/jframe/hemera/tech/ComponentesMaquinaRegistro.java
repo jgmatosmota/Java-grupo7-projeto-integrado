@@ -10,6 +10,7 @@ import com.github.britooo.looca.api.group.rede.Rede;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
 import com.github.britooo.looca.api.group.sistema.Sistema;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,13 +40,14 @@ public class ComponentesMaquinaRegistro {
         return (double) bytes / (1024 * 1024);
     }
     public Double getUsoCpu(){
-        return objtProcessador.getUso();
+        Double uso = looca.getProcessador().getUso();
+        return uso < 10.0 ? uso * 10 : uso;
     }
     public Double getUsoRam(){
-        return (objtMemoria.getTotal().doubleValue() / objtMemoria.getEmUso().doubleValue()) * 100;
+        return ( objtMemoria.getEmUso().doubleValue() / objtMemoria.getTotal().doubleValue()) * 100;
     }
     public Double getUsoDisco(){
-        return (volumeA.getTotal().doubleValue() / (volumeA.getTotal().doubleValue() - volumeA.getDisponivel().doubleValue())) * 100;
+        return ((volumeA.getTotal().doubleValue() - volumeA.getDisponivel().doubleValue()) / volumeA.getTotal().doubleValue()) * 100;
     }
 
     public Double getDownload() throws InterruptedException {
@@ -64,6 +66,21 @@ public class ComponentesMaquinaRegistro {
         return byteConverterMega(bytesEnvS);
 
     }
+    ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    JdbcTemplate conexao = conexaoBancoLocal.getConnection();
+    ConexaoBanco conexaoBancoNuvem = new ConexaoBanco();
+    JdbcTemplate conexaoNuvem = conexaoBancoNuvem.getConnection();
+
+
+    public void RegistroMaquinaLocal(String email) throws InterruptedException {
+        String sql = "INSERT INTO RegistroMaquina (UsoCpu, UsoRam, UsoDisco, Download, Upload , Email) VALUES (?, ?, ?, ?, ?, ?)";
+        conexao.update(sql, this.getUsoCpu(), this.getUsoRam(), this.getUsoDisco(), this.getDownload(), this.getUpload(), email);
+    }
+    public void RegistroMaquinaNuvem(String email) throws InterruptedException {
+        String sql = "INSERT INTO RegistroMaquina (UsoCpu, UsoRam, UsoDisco, Download, Upload, Email) VALUES (?, ?, ?, ?, ?, ?)";
+        conexaoNuvem.update(sql, this.getUsoCpu(), this.getUsoRam(), this.getUsoDisco(), this.getDownload(), this.getUpload(), email);
+    }
+
 
 
 

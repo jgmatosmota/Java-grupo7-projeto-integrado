@@ -181,13 +181,13 @@ public class JframeHemera extends javax.swing.JFrame {
         String senha = String.valueOf(inputSenha.getText());
         ComponentesMaquina componentesMacAddress = new ComponentesMaquina();
 
-        try {
+
             List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select *"
                             + " from Funcionario where email = ? and senha = ?",
                     new ObjetoUsuarioRowMapper(), email, senha);
 
             if (listaObjetoUsuario.size() > 0) {
-                List<Componentes> listaComponentesMaquina = conexao.query("select * from Componentes where MacAddres = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
+                List<Componentes> listaComponentesMaquina = conexao.query("select * from Componentes where MacAddress = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
                 if(listaComponentesMaquina.size() > 0){
                     System.out.println("maquina ja cadastrada");
                 }else{
@@ -208,9 +208,7 @@ public class JframeHemera extends javax.swing.JFrame {
             } else {
 
             }
-        }catch (Exception e){
-            System.out.println("deu tudo errado");
-        }
+
 
     }//GEN-LAST:event_botaoLoginActionPerformed
    

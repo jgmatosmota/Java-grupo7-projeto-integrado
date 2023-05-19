@@ -4,6 +4,8 @@
  */
 package com.mycompany.jframe.hemera.tech;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.Consumer;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -22,6 +24,7 @@ public class JframeComponentes extends javax.swing.JFrame {
         this.setResizable(false);
         this.setUndecorated(true);
         this.setVisible(true);
+        this.teste();
         
     }
 
@@ -107,7 +110,20 @@ public class JframeComponentes extends javax.swing.JFrame {
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = conexaoBanco.getConnection();
         JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
-        
+        public void teste(){
+            new Timer().scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    ComponentesMaquinaRegistro componentes = new ComponentesMaquinaRegistro();
+                    try{
+                        componentes.RegistroMaquinaLocal(emailUsuario);
+
+                    }catch (Exception e){
+                        System.out.println("ta dando ruim no insert fodeu");
+                    }
+                }
+            },0,20000);
+        }
     private void botaoDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDadosActionPerformed
        ComponentesMaquina componentesB = new ComponentesMaquina();
        String finalEmailUsuarioSessao = emailUsuario;
@@ -162,6 +178,7 @@ public class JframeComponentes extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JframeComponentes().setVisible(true);
+
             }
         });
     }
