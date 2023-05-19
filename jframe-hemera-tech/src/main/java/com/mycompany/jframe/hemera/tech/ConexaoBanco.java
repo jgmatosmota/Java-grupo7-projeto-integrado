@@ -17,17 +17,17 @@ public class ConexaoBanco {
 
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
 //     dataSource​.setUrl("jdbc:h2:file:/banco_teste");
 //jdbc:sqlserver://hemeratech.database.windows.net:1433;database=hemeratech;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;
 
-        dataSource​.setUrl("jdbc:sqlserver://hemeratech.database.windows.net:1433;database=hemeratech;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
+        dataSource.setUrl("jdbc:sqlserver://hemeratech.database.windows.net:1433;database=hemeratech;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
     //("jdbc:mysql://localhost:3306/teste123")
 
-        dataSource​.setUsername("hemeratech");
+        dataSource.setUsername("hemeratech");
 
-        dataSource​.setPassword("#Gfgrupo7");  
+        dataSource.setPassword("#Gfgrupo7");  
 
     this.connection = new JdbcTemplate(dataSource);
 

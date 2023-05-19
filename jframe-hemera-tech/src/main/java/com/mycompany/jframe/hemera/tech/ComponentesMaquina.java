@@ -41,8 +41,10 @@ public class ComponentesMaquina {
     private String sistemaOperacional = objtSistema.getSistemaOperacional();
     private String modeloProcessador = objtProcessador.getNome();
     private Long totalMemoriaRam = objtMemoria.getTotal();
-   
-    
+
+    private static Double byteConverter(long bytes){
+        return (double) bytes /(1024 * 1024 * 1024);
+    }
    
     public String getSistemaOperacional() {
         return sistemaOperacional;
@@ -56,13 +58,16 @@ public class ComponentesMaquina {
         return macAddress;
     }
 
-    public Long getMemoriaTotal() {
-        return totalMemoriaRam;
+    public String getMemoriaTotal() {
+        Long memoriaTotal = objtMemoria.getTotal();
+        Double memoriaTotalDouble = byteConverter(memoriaTotal);
+        return Double.toString(memoriaTotalDouble);
     }
 
-    public Long getMemoriaArmazenamento() {
-        return memoriaArmazenamento;
+    public String getMemoriaArmazenamento() {
+        Double armazenamentoTotalDouble = byteConverter(memoriaArmazenamento);
+        return Double.toString(armazenamentoTotalDouble);
     }
-   
+
    
     }

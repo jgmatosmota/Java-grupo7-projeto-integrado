@@ -6,6 +6,9 @@ package com.mycompany.jframe.hemera.tech;
 
 import java.awt.GraphicsEnvironment;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -176,22 +179,39 @@ public class JframeHemera extends javax.swing.JFrame {
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String email = String.valueOf(inputLogin.getText());
         String senha = String.valueOf(inputSenha.getText());
-        // O simbolo ? na query vão ser substituidos pelas variáveis "login" e "senha"
-        // O select 1 me retorna um booleano
-        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select *"
-                + " from Funcionario where email = ? and senha = ?",
-            new ObjetoUsuarioRowMapper(), email, senha);
-        //Validação de login com método.isEmpty() só que negado, ou seja, se ele retornar 1 usuário ele conseguiu logar;
-        if (listaObjetoUsuario.size() > 0) {
-            //Chamando próxima tela
-            JframeComponentes telaComponentes = new JframeComponentes();
-            telaComponentes.setEmailUsuario(email);
-            telaComponentes.setVisible(true);
-            //Faz a tela de login sumir e passar para próxima tela
-            this.setVisible(false);
-        } else {
-            //Deve retornar uma frase de erro embaixo do campo de senha ou do botão
+        ComponentesMaquina componentesMacAddress = new ComponentesMaquina();
+
+        try {
+            List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select *"
+                            + " from Funcionario where email = ? and senha = ?",
+                    new ObjetoUsuarioRowMapper(), email, senha);
+
+            if (listaObjetoUsuario.size() > 0) {
+                List<Componentes> listaComponentesMaquina = conexao.query("select * from Componentes where MacAddres = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
+                if(listaComponentesMaquina.size() > 0){
+                    System.out.println("maquina ja cadastrada");
+                }else{
+                    try{
+                        Consumer<ComponentesMaquina> insertComponentes = (ComponentesMaquina c) ->  {
+                            String sql = "INSERT INTO Componentes (SistemaOperacional, ModeloProcessador, MacAddress, MemoriaTotal, MemoriaArmazenamento, EmailUsuario) VALUES (?, ?, ?, ?, ?, ?)";
+                            conexao.update(sql , componentesMacAddress.getSistemaOperacional(), componentesMacAddress.getModeloProcessador(), componentesMacAddress.getHostName(), componentesMacAddress.getMemoriaTotal(), componentesMacAddress.getMemoriaArmazenamento(), email);
+                        };
+                        insertComponentes.accept(componentesMacAddress);
+                    }catch (Exception e){
+                        System.out.println("Validacao de computador ja cadastrado deu errado!");
+                    }
+                }
+                JframeComponentes telaComponentes = new JframeComponentes();
+                telaComponentes.setEmailUsuario(email);
+                telaComponentes.setVisible(true);
+                this.setVisible(false);
+            } else {
+
+            }
+        }catch (Exception e){
+            System.out.println("deu tudo errado");
         }
+
     }//GEN-LAST:event_botaoLoginActionPerformed
    
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
