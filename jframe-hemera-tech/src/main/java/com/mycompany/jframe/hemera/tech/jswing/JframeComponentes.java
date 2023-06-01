@@ -2,11 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.jframe.hemera.tech;
+package com.mycompany.jframe.hemera.tech.jswing;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.Consumer;
+
+import com.mycompany.jframe.hemera.tech.componentes.ComponentesMaquinaRegistro;
+import com.mycompany.jframe.hemera.tech.conexao.ConexaoBanco;
+import com.mycompany.jframe.hemera.tech.conexao.ConexaoBancoLocal;
+import com.mycompany.jframe.hemera.tech.entidades.Componentes;
+import com.mycompany.jframe.hemera.tech.entidades.ComponentesRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -24,6 +30,7 @@ public class JframeComponentes extends javax.swing.JFrame {
         this.setResizable(false);
         this.setUndecorated(true);
         this.setVisible(true);
+//        this.getIdEmpresaSelect();
         this.teste();
         
     }
@@ -33,8 +40,16 @@ public class JframeComponentes extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private String emailUsuario;
+    private Integer idComputador;
+    private Integer idEmpresa;
     public void setEmailUsuario(String email){
         this.emailUsuario = email;
+    }
+    public void setIdComputador(Integer idComputador){
+        this.idComputador = idComputador;
+    }
+    public void setIdEmpresa(Integer idEmpresa){
+        this.idEmpresa = idEmpresa;
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,7 +57,6 @@ public class JframeComponentes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        botaoDados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,13 +70,6 @@ public class JframeComponentes extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HEMERA.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
-        botaoDados.setText("CapturarDados");
-        botaoDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDadosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,13 +79,8 @@ public class JframeComponentes extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(botaoDados, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,9 +90,7 @@ public class JframeComponentes extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoDados)
-                .addContainerGap())
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,43 +110,37 @@ public class JframeComponentes extends javax.swing.JFrame {
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = conexaoBanco.getConnection();
         JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
+        ComponentesMaquinaRegistro componentes = new ComponentesMaquinaRegistro();
+
+//        public void getIdEmpresaSelect(){
+//            ComponentesMaquinaRegistro objtComponentes = new ComponentesMaquinaRegistro();
+//            String mac = componentes.getMacAddress();
+//            Integer resposta = 0;
+//            try{
+//                List<Componentes> listaComponentes = conexao.query("select idEmpresa from Computador where MacAddress = ?", new ComponentesRowMapper(), mac);
+//                resposta = listaComponentes.get(0).getIdEmpresa();
+//
+//            }catch (Exception e){
+//                System.out.println("consulta deu errado");
+//            } finally {
+//                idEmpresa = resposta;
+//            }
+//
+//        }
         public void teste(){
             new Timer().scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    ComponentesMaquinaRegistro componentes = new ComponentesMaquinaRegistro();
+
                     try{
-                        componentes.RegistroMaquinaLocal(emailUsuario);
+                        componentes.RegistroMaquinaNuvem(idComputador,idEmpresa);
 
                     }catch (Exception e){
-                        System.out.println("ta dando ruim no insert fodeu");
+                        System.out.println(e);
                     }
                 }
             },0,20000);
         }
-    private void botaoDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDadosActionPerformed
-       ComponentesMaquina componentesB = new ComponentesMaquina();
-       String finalEmailUsuarioSessao = emailUsuario;
-        try{
-                            
-                            Consumer<ComponentesMaquina> insercaoBancoLocal = (ComponentesMaquina c) -> {
-                                String sql = "INSERT INTO Componentes (SistemaOperacional, ModeloProcessador, MacAddress, MemoriaTotal, MemoriaArmazenamento, EmailUsuario) VALUES (?, ?, ?, ?, ?, ?)";
-                                conexaoLocal.update(sql, componentesB.getSistemaOperacional(), componentesB.getModeloProcessador(), componentesB.getHostName(), componentesB.getMemoriaTotal(), componentesB.getMemoriaArmazenamento(), finalEmailUsuarioSessao);
-                            };
-                            Consumer<ComponentesMaquina> insercaoBancoAzure = (ComponentesMaquina c) -> {
-                                String sql = "INSERT INTO Componentes (SistemaOperacional, ModeloProcessador, MacAddress, MemoriaTotal, MemoriaArmazenamento, EmailUsuario) VALUES (?, ?, ?, ?, ?, ?)";
-                                conexao.update(sql, componentesB.getSistemaOperacional(), componentesB.getModeloProcessador(), componentesB.getHostName(), componentesB.getMemoriaTotal(), componentesB.getMemoriaArmazenamento(), finalEmailUsuarioSessao);
-                            };
-                            insercaoBancoAzure.accept(componentesB);
-
-                            insercaoBancoLocal.accept(componentesB);
-                            System.out.println("Insert deu certo!");
-
-                        }catch (Exception e){
-                            System.out.println("não foi possível inserir no banco");
-                        }
-    }//GEN-LAST:event_botaoDadosActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -184,7 +178,6 @@ public class JframeComponentes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoDados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

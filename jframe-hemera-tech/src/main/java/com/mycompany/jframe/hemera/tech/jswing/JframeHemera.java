@@ -2,13 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.jframe.hemera.tech;
+package com.mycompany.jframe.hemera.tech.jswing;
 
-import java.awt.GraphicsEnvironment;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 
+import com.mycompany.jframe.hemera.tech.entidades.Componentes;
+import com.mycompany.jframe.hemera.tech.entidades.ComponentesRowMapper;
+import com.mycompany.jframe.hemera.tech.entidades.ObjetoUsuario;
+import com.mycompany.jframe.hemera.tech.entidades.ObjetoUsuarioRowMapper;
+import com.mycompany.jframe.hemera.tech.componentes.ComponentesMaquina;
+import com.mycompany.jframe.hemera.tech.conexao.ConexaoBanco;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -85,7 +90,11 @@ public class JframeHemera extends javax.swing.JFrame {
         jLabel1.setText("Senha");
 
         inputSenha.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        inputSenha.setText("jPasswordField1");
+        inputSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputSenhaActionPerformed(evt);
+            }
+        });
 
         botaoLogin.setBackground(new java.awt.Color(107, 12, 197));
         botaoLogin.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
@@ -175,36 +184,54 @@ public class JframeHemera extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-     String emailUsuario = "";
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String email = String.valueOf(inputLogin.getText());
         String senha = String.valueOf(inputSenha.getText());
         ComponentesMaquina componentesMacAddress = new ComponentesMaquina();
 
 
-            List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select *"
+            List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select email, senha, idEmpresa"
                             + " from Funcionario where email = ? and senha = ?",
                     new ObjetoUsuarioRowMapper(), email, senha);
 
-            if (listaObjetoUsuario.size() > 0) {
-                List<Componentes> listaComponentesMaquina = conexao.query("select * from Componentes where MacAddress = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
+        System.out.println("certo 1");
+        if (listaObjetoUsuario.size() > 0) {
+                List<Componentes> listaComponentesMaquina = conexao.query("select * from Computador where MacAddress = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
+                List<Componentes> listaComponentesEspelho = new ArrayList<>();
+            System.out.println("certo2");
+
                 if(listaComponentesMaquina.size() > 0){
+                    System.out.println("certo3");
                     System.out.println("maquina ja cadastrada");
                 }else{
                     try{
+                        System.out.println("Maquina nao cadastrada");
                         Consumer<ComponentesMaquina> insertComponentes = (ComponentesMaquina c) ->  {
-                            String sql = "INSERT INTO Componentes (SistemaOperacional, ModeloProcessador, MacAddress, MemoriaTotal, MemoriaArmazenamento, EmailUsuario) VALUES (?, ?, ?, ?, ?, ?)";
-                            conexao.update(sql , componentesMacAddress.getSistemaOperacional(), componentesMacAddress.getModeloProcessador(), componentesMacAddress.getHostName(), componentesMacAddress.getMemoriaTotal(), componentesMacAddress.getMemoriaArmazenamento(), email);
+                            String sql = "INSERT INTO Computador (sistema_operacional, modelo, MacAddress, total_memoria, total_armazenamento, idEmpresa) VALUES (?, ?, ?, ?, ?, ?)";
+                            conexao.update(sql , componentesMacAddress.getSistemaOperacional(), componentesMacAddress.getModeloProcessador(), componentesMacAddress.getHostName(), componentesMacAddress.getMemoriaTotal(), componentesMacAddress.getMemoriaArmazenamento(), listaObjetoUsuario.get(0).getIdEmpresa());
                         };
                         insertComponentes.accept(componentesMacAddress);
                     }catch (Exception e){
                         System.out.println("Validacao de computador ja cadastrado deu errado!");
+                    }finally {
+                        System.out.println("certo");
+                        List<Componentes> listaComponentesMaquinaB = conexao.query("select * from Computador where MacAddress = ?", new ComponentesRowMapper(), componentesMacAddress.getHostName());
+                        listaComponentesEspelho = listaComponentesMaquinaB;
                     }
                 }
                 JframeComponentes telaComponentes = new JframeComponentes();
+
+                if (listaComponentesEspelho.size() > 0) {
+                    telaComponentes.setIdEmpresa(listaComponentesEspelho.get(0).getIdEmpresa());
+                    telaComponentes.setIdComputador(listaComponentesEspelho.get(0).getId());
+                } else {
+                    telaComponentes.setIdEmpresa(listaComponentesMaquina.get(0).getIdEmpresa());
+                    telaComponentes.setIdComputador(listaComponentesMaquina.get(0).getId());
+                }
                 telaComponentes.setEmailUsuario(email);
                 telaComponentes.setVisible(true);
                 this.setVisible(false);
+            System.out.println("certp6");
             } else {
 
             }
@@ -215,6 +242,10 @@ public class JframeHemera extends javax.swing.JFrame {
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLoginActionPerformed
+
+    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputSenhaActionPerformed
     // métodos de conexão com banco de dados SQLserver
     ConexaoBanco conexaoBanco = new ConexaoBanco();
     JdbcTemplate conexao = conexaoBanco.getConnection();
