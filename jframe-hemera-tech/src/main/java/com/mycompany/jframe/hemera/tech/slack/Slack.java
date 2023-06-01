@@ -10,9 +10,10 @@ import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
 public class Slack {
+    static SlackChave chave = new SlackChave();
 
     private static HttpClient client = HttpClient.newHttpClient();
-    private static final String webhook = "https://hooks.slack.com/services/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";
+    private static final String webhook = chave.getChave();
 
     public static void sendMessage(JSONObject content) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder(URI.create(webhook))
