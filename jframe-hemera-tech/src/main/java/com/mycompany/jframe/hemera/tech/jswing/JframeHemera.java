@@ -199,7 +199,7 @@ public class JframeHemera extends javax.swing.JFrame {
         ComponentesMaquina componentesMacAddress = new ComponentesMaquina();
         LogAcesso log = new LogAcesso();
 
-        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select email, senha, idEmpresa"
+        List<ObjetoUsuario> listaObjetoUsuario = conexao.query("select idFuncionario,email, senha, idEmpresa"
                 + " from Funcionario where email = ? and senha = ?",
                 new ObjetoUsuarioRowMapper(), email, senha);
 
