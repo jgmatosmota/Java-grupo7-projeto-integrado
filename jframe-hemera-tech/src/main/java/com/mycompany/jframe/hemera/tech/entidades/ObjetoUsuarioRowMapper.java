@@ -22,7 +22,7 @@ public class ObjetoUsuarioRowMapper implements RowMapper<ObjetoUsuario> {
         ObjetoUsuario objetoUsuario = new ObjetoUsuario();
         
         // email em string é o nome da coluna do banco de dados
-
+        objetoUsuario.setIdFuncionario(rs.getInt("idFuncionario")); 
         objetoUsuario.setEmail(rs.getString("email"));
         objetoUsuario.setSenha(rs.getString("senha"));
         objetoUsuario.setIdEmpresa(rs.getInt("idEmpresa"));
