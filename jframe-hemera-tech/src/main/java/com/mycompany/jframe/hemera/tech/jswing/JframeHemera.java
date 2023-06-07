@@ -29,14 +29,14 @@ public class JframeHemera extends javax.swing.JFrame {
      */
     public JframeHemera() {
         initComponents();
-
-        this.setExtendedState(JframeHemera.MAXIMIZED_BOTH);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize.width, screenSize.height);
         this.dispose();
         this.setResizable(false);
         this.setUndecorated(true);
         this.setVisible(true);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screenSize.width, screenSize.height);
+        this.setExtendedState(JframeHemera.MAXIMIZED_BOTH);
+
     }
 
     /**
