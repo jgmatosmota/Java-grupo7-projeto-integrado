@@ -131,15 +131,16 @@ public class JframeComponentes extends javax.swing.JFrame {
             new Timer().scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-
                     try{
-                        componentes.RegistroMaquinaNuvem(idComputador,idEmpresa);
-
+                        componentes.RegistroMaquinaNuvem(idComputador, idEmpresa);
+                        componentes.RegistroMaquinaLocal(idComputador, idEmpresa);
+                        System.out.println("inserindo");
                     }catch (Exception e){
-                        System.out.println(e);
+                        System.out.println("deu ruim");
                     }
+
                 }
-            },0,20000);
+            },0,5000);
         }
     /**
      * @param args the command line arguments

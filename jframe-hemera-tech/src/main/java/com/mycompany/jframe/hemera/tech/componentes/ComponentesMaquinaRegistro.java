@@ -93,7 +93,7 @@ public class ComponentesMaquinaRegistro {
 
 
     public void RegistroMaquinaLocal(Integer idComputador, Integer idEmpresa) throws IOException, InterruptedException {
-        String sql = "INSERT INTO RegistroMaquina (uso_cpu, utilizado_memoria, utilizado_armazenamento, download_rede, upload_rede, idComputador, MacAdress, idEmpresa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Registros (uso_cpu, utilizado_memoria, utilizado_armazenamento, download_rede, upload_rede, idComputador, MacAddress, idEmpresa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         conexao.update(sql, this.getUsoCpu(), this.getUsoRam(), this.getUsoDisco(), this.getDownload(), this.getUpload(), idComputador, getMacAddress(), idEmpresa);
     }
     public void RegistroMaquinaNuvem(Integer idComputador, Integer idEmpresa) throws IOException, InterruptedException {

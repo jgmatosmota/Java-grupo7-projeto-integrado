@@ -4,6 +4,7 @@
  */
 package com.mycompany.jframe.hemera.tech.jswing;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -34,6 +35,8 @@ public class JframeHemera extends javax.swing.JFrame {
         this.setResizable(false);
         this.setUndecorated(true);
         this.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize.width, screenSize.height);
     }
 
     /**
@@ -217,7 +220,11 @@ public class JframeHemera extends javax.swing.JFrame {
                 System.out.println("maquina ja cadastrada");
 
                 //INSERIR NA TABELA LogAcesso qual maquina está sendo usada -- TABELA VAI SER RECRIADA NA AZURE
-               // log.inserirLoginBanco(listaObjetoUsuario.get(0), listaComponentesMaquina.get(0));
+               try{
+                   log.inserirLoginBanco(listaObjetoUsuario.get(0), listaComponentesMaquina.get(0));
+               }catch (Exception e){
+                   System.out.println("deu ruim insert log");
+               }
             } else {
                 try {
                     System.out.println("Maquina nao cadastrada");
@@ -234,7 +241,7 @@ public class JframeHemera extends javax.swing.JFrame {
                     listaComponentesEspelho = listaComponentesMaquinaB;
                     
                     //inserir no logAcesso a maquina que está sendo usada -- TABELA VAI SER RECRIADA NA AZURE
-                  //  log.inserirLoginBanco(listaObjetoUsuario.get(0), listaComponentesEspelho.get(0));
+                  log.inserirLoginBanco(listaObjetoUsuario.get(0), listaComponentesEspelho.get(0));
                 }
             }
             JframeComponentes telaComponentes = new JframeComponentes();

@@ -63,7 +63,7 @@ public class LogAcesso {
     public void inserirLoginBanco(ObjetoUsuario usuarioLogado, Componentes componenteAtual) {
         System.out.println(usuarioLogado);
         String insertTabelaLogAcesso = "insert into LogAcesso (idFuncionario, MacAddress, idComputador, idEmpresa, horario_inicio) values( ?, ?, ?,?, ?)";
-        conexaoNuvem.update(insertTabelaLogAcesso, usuarioLogado.getIdFuncionario(), componenteAtual.getHostName(), componenteAtual.getIdEmpresa(), componenteAtual.getIdEmpresa(), dataHoraInicio);
+        conexaoNuvem.update(insertTabelaLogAcesso, usuarioLogado.getIdFuncionario(), componenteAtual.getHostName(), componenteAtual.getId(), componenteAtual.getIdEmpresa(), dataHoraInicio);
         System.out.println("Cadastrei esse login no banco");
     }
 
