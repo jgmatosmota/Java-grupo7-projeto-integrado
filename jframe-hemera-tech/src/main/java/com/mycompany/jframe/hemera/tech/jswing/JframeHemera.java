@@ -18,6 +18,8 @@ import com.mycompany.jframe.hemera.tech.conexao.ConexaoBanco;
 import com.mycompany.jframe.hemera.tech.entidades.LogAcesso;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.swing.*;
+
 /**
  *
  * @author jgmat
@@ -28,14 +30,19 @@ public class JframeHemera extends javax.swing.JFrame {
      * Creates new form JframeHemera
      */
     public JframeHemera() {
-        initComponents();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screenSize.width, screenSize.height);
-        this.dispose();
-        this.setResizable(false);
         this.setUndecorated(true);
+        this.setResizable(false);
+
+        initComponents();
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice device = env.getDefaultScreenDevice();
+
+        device.setFullScreenWindow(this);
         this.setVisible(true);
-        this.setExtendedState(JframeHemera.MAXIMIZED_BOTH);
+
 
     }
 
